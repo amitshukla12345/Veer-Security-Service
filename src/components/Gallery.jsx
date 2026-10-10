@@ -21,7 +21,7 @@ import React, { useState, useCallback } from 'react';
 
 const ALL_ITEMS = [
   // ── Security Personnel ──────────────────────────────────────
-  { id: 1, category: 'Security Personnel',  src: '/gallery/veer-security-guard.jpg', alt: 'Veer Security Guard on duty' },
+  { id: 1, category: 'Security Personnel',  src: 'gallery/veer-security-guard.jpg', alt: 'Veer Security Guard on duty' },
   { id: 2, category: 'Security Personnel',  src: 'https://images.unsplash.com/photo-1587574293340-e0011c4e8ecf?w=600&q=75&fit=crop', alt: 'Security personnel at entrance' },
 
   // ── Corporate Security ───────────────────────────────────────
@@ -31,7 +31,7 @@ const ALL_ITEMS = [
 
   // ── Industrial Security ──────────────────────────────────────
   // src: '/gallery/industrial-security/industrial-01.jpg'
-  { id: 5, category: 'Industrial Security', src: '/gallery/security-personnel/veer-industrial-formal.jpg', alt: 'Veer Security industrial site team' },
+  { id: 5, category: 'Industrial Security', src: 'gallery/security-personnel/veer-industrial-formal.jpg', alt: 'Veer Security industrial site team' },
   { id: 6, category: 'Industrial Security', src: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=75&fit=crop', alt: 'Factory security perimeter' },
 
   // ── Training ─────────────────────────────────────────────────
@@ -45,7 +45,7 @@ const ALL_ITEMS = [
 
   // ── Housekeeping ─────────────────────────────────────────────
   // Local image: public/gallery/housekeeping/house keeping .jpg
-  { id: 10, category: 'Housekeeping',       src: '/gallery/housekeeping/house%20keeping%20.jpg', alt: 'Professional housekeeping staff at work' },
+  { id: 10, category: 'Housekeeping',       src: 'gallery/housekeeping/house%20keeping%20.jpg', alt: 'Professional housekeeping staff at work' },
   { id: 11, category: 'Housekeeping',       src: 'https://images.unsplash.com/photo-1527515637462-cff94edd36b3?w=600&q=75&fit=crop', alt: 'Housekeeping team at work' },
 ];
 
@@ -78,7 +78,7 @@ export default function Gallery() {
       {/* ── Full Width Image Banner (No Cropping) ── */}
       <div style={{ width: '100%', maxWidth: '1920px', margin: '0 auto', background: '#0a1e3c' }}>
         <img 
-          src="/gallery/gallery-banner.jpg" 
+          src="gallery/gallery-banner.jpg" 
           alt="Veer Security Force Gallery" 
           style={{ 
             width: '100%', 

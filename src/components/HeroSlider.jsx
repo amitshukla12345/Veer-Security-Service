@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { COMPANY } from '../data/siteData';
 
-const HOUSEKEEPING_IMG = '/gallery/housekeeping/house%20keeping%20.jpg';
-const SECURITY_IMG = '/gallery/veer-industrial-formal.jpg';
-const CORPORATE_IMG = '/gallery/veer-security-guard.jpg';
+const HOUSEKEEPING_IMG = 'gallery/housekeeping/house%20keeping%20.jpg';
+const SECURITY_IMG = 'gallery/veer-industrial-formal.jpg';
+const CORPORATE_IMG = 'gallery/veer-security-guard.jpg';
 
 const SLIDES = [
   {
@@ -39,7 +39,7 @@ const SLIDES = [
     title: 'FEMALE SECURITY GUARDS',
     desc: 'We provide professionally trained female security personnel for corporate offices, malls, events, and residential societies, ensuring gender-specific security and frisking duties with utmost professionalism.',
     cta: { label: 'VIEW SERVICES', href: '#services' },
-    img: '/gallery/security-personnel/female-security-mumbai.jpg',
+    img: 'gallery/security-personnel/female-security-mumbai.jpg',
     badgeText: 'Top Rated Security'
   },
   {
@@ -48,7 +48,7 @@ const SLIDES = [
     title: 'EVENT & CROWD MANAGEMENT',
     desc: 'From corporate conferences to large public gatherings, our specialized event security teams handle crowd management, VIP protection, and access control flawlessly.',
     cta: { label: 'CONTACT US', href: '#contact' },
-    img: '/gallery/housekeeping/house_keeping.jpeg',
+    img: 'gallery/housekeeping/house_keeping.jpeg',
     badgeText: 'Event Experts'
   },
   {
@@ -57,7 +57,7 @@ const SLIDES = [
     title: 'PROFESSIONAL BOUNCERS',
     desc: 'Tough, highly trained male and female bouncers for premium events, VIP protection, clubs, and high-profile gatherings. Ensuring strict access control and absolute safety.',
     cta: { label: 'HIRE BOUNCERS', href: '#contact' },
-    img: '/gallery/security-personnel/bouncers-group.jpg',
+    img: 'gallery/security-personnel/bouncers-group.jpg',
     badgeText: 'VIP Protection'
   },
 ];

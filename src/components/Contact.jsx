@@ -68,7 +68,7 @@ export default function Contact() {
 
       {/* ── Hero Banner ── */}
       <div style={{ position: 'relative', width: '100%', maxWidth: '1920px', margin: '0 auto', background: '#0a1e3c', overflow: 'hidden' }}>
-        <img src="/gallery/contact.png" alt="Contact Banner" fetchPriority="high" style={{ width: '100%', height: 'auto', display: 'block' }} />
+        <img src="gallery/contact.png" alt="Contact Banner" fetchPriority="high" style={{ width: '100%', height: 'auto', display: 'block' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(2,12,27,0.45)' }} />
       </div>
 

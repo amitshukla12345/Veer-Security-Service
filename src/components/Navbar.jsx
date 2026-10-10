@@ -27,7 +27,7 @@ function NavIcon({ name }) {
   }
 }
 
-const LOGO_SRC = '/gallery/logo.png';
+const LOGO_SRC = 'gallery/logo.png';
 
 const DROPDOWN_ICONS = {
   'security-guards':      <Shield size={20} strokeWidth={2} color="#FFC107" />,

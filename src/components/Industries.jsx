@@ -17,8 +17,8 @@ const ICON_MAP = {
 };
 
 const BANNER_IMAGES = [
-  { url: '/gallery/industrial-security/group9.png', pos: 'center top' },
-  { url: '/gallery/veer-security-guard.jpg', pos: 'center 30%' }
+  { url: 'gallery/industrial-security/group9.png', pos: 'center top' },
+  { url: 'gallery/veer-security-guard.jpg', pos: 'center 30%' }
 ];
 
 export default function Industries() {

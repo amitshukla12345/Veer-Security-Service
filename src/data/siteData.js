@@ -37,7 +37,7 @@ export const SERVICES = [
     title: "Security Guard Services",
     description:
       "Professionally trained security guards for round-the-clock protection of your premises, assets and personnel.",
-    img: "/gallery/security-personnel/group-industrial-formal.jpg",
+    img: "gallery/security-personnel/group-industrial-formal.jpg",
     whatsappMsg:
       "Hello Veer Security Service, I am interested in your Security Guard Services. Please share more details.",
   },
@@ -47,7 +47,7 @@ export const SERVICES = [
     title: "Corporate Security",
     description:
       "Comprehensive security management for corporate offices including access control, visitor management and perimeter security.",
-    img: "/gallery/veer-security-guard.jpg",
+    img: "gallery/veer-security-guard.jpg",
     whatsappMsg:
       "Hello Veer Security Service, I am interested in your Corporate Security services. Please share more details.",
   },
@@ -57,7 +57,7 @@ export const SERVICES = [
     title: "Industrial Security",
     description:
       "Specialized security solutions for factories, warehouses and industrial sites to protect equipment, inventory and workforce.",
-    img: "/gallery/security-personnel/veer-industrial-formal.jpg",
+    img: "gallery/security-personnel/veer-industrial-formal.jpg",
     whatsappMsg:
       "Hello Veer Security Service, I am interested in your Industrial Security services. Please share more details.",
   },
@@ -97,7 +97,7 @@ export const SERVICES = [
     title: "Security Supervisors",
     description:
       "Experienced security supervisors for overseeing guard operations, conducting site inspections and maintaining standards.",
-    img: "/gallery/security-personnel/bouncers-group.jpg",
+    img: "gallery/security-personnel/bouncers-group.jpg",
     whatsappMsg:
       "Hello Veer Security Service, I am interested in your Security Supervisor services. Please share more details.",
   },
@@ -107,7 +107,7 @@ export const SERVICES = [
     title: "Female Security Guards",
     description:
       "Trained female security personnel for organisations requiring gender-specific security and frisking duties.",
-    img: "/gallery/security-personnel/female-security-mumbai.jpg",
+    img: "gallery/security-personnel/female-security-mumbai.jpg",
     whatsappMsg:
       "Hello Veer Security Service, I am interested in your Female Security Guard services. Please share more details.",
   },
@@ -117,7 +117,7 @@ export const SERVICES = [
     title: "Housekeeping Services",
     description:
       "Professional housekeeping and facility management staff for offices, residential complexes, hotels, hospitals and commercial establishments. We provide trained housekeeping personnel for daily cleaning, sanitation and upkeep of your premises.",
-    img: "/gallery/housekeeping/house%20keeping%20.jpg",
+    img: "gallery/housekeeping/house%20keeping%20.jpg",
     whatsappMsg:
       "Hello Veer Security Service, I am interested in your Housekeeping Services. Please share more details.",
   },

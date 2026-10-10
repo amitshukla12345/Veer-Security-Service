@@ -48,7 +48,7 @@ export default function About() {
       {/* ── Hero Header with Img (No Cropping) ── */}
       <div style={{ position: 'relative', width: '100%', maxWidth: '1920px', margin: '0 auto', background: '#0a1e3c', overflow: 'hidden' }}>
         <img
-          src="/gallery/about page.png"
+          src="gallery/about page.png"
           alt="About Banner"
           style={{ width: '100%', height: 'auto', display: 'block' }}
         />
@@ -121,7 +121,7 @@ export default function About() {
             {/* Founder card */}
             <div className="about-founder-card">
               <div className="about-founder-avatar" aria-hidden="true">
-                <img src="/gallery/founder_professional.jpg" alt="Sanjay Pandey - Founder" />
+                <img src="gallery/founder_professional.jpg" alt="Sanjay Pandey - Founder" />
               </div>
               <div className="about-founder-info">
                 <div className="about-founder-name">Sanjay Pandey</div>

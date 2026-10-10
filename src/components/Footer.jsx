@@ -22,7 +22,7 @@ const FOOTER_SERVICES = [
 ];
 
 // Company logo — stored in public/gallery/logo.png
-const LOGO_SRC = '/gallery/logo.png';
+const LOGO_SRC = 'gallery/logo.png';
 
 export default function Footer() {
   const year = new Date().getFullYear();

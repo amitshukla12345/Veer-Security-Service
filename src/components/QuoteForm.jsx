@@ -270,7 +270,7 @@ Thank you.`;
               <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(6px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
                 <div style={{ background: 'linear-gradient(145deg, rgba(13,33,71,0.95) 0%, rgba(7,21,48,1) 100%)', border: '1px solid rgba(37,211,102,0.4)', borderRadius: '24px', padding: '48px 32px', textAlign: 'center', maxWidth: '420px', width: '100%', boxShadow: '0 30px 60px rgba(0,0,0,0.6)' }}>
                   <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '130px', height: '130px', borderRadius: '50%', background: '#fff', marginBottom: '28px', padding: '12px', boxShadow: '0 0 25px rgba(255, 193, 7, 0.35), 0 0 0 10px rgba(255, 193, 7, 0.08)' }}>
-                    <img src="/gallery/logo.png" alt="Veer Security Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    <img src="gallery/logo.png" alt="Veer Security Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
                   <h4 style={{ fontSize: '1.7rem', color: '#fff', marginBottom: '14px', fontFamily: 'var(--font-display)', fontWeight: 800 }}>Enquiry Sent!</h4>
                   <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.6, marginBottom: '36px' }}>Thank you for your enquiry. Our team will review your requirements and contact you shortly.</p>

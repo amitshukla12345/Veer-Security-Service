@@ -31,7 +31,7 @@ const SERVICE_ICONS = {
 };
 
 const BANNER_IMAGES = [
-  { url: '/gallery/Gemini_ service.png', pos: 'center center' }
+  { url: 'gallery/Gemini_ service.png', pos: 'center center' }
 ];
 
 export default function Services() {
@@ -180,7 +180,7 @@ Please contact me. Thank you.`;
                 {sent ? (
                   <div style={{ textAlign: 'center', padding: '20px', background: 'rgba(37,211,102,0.1)', borderRadius: '12px', border: '1px solid rgba(37,211,102,0.2)' }}>
                     <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '64px', height: '64px', borderRadius: '50%', background: '#fff', marginBottom: '16px', padding: '8px', boxShadow: '0 0 15px rgba(255, 193, 7, 0.35), 0 0 0 6px rgba(255, 193, 7, 0.08)' }}>
-                      <img src="/gallery/logo.png" alt="Veer Security Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                      <img src="gallery/logo.png" alt="Veer Security Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                     </div>
                     <h4 style={{ color: '#25D366', fontSize: '1.2rem', marginBottom: '8px' }}>Enquiry Sent!</h4>
                     <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', marginBottom: '16px' }}>Thank you. We will contact you soon regarding {activeData.title}.</p>
