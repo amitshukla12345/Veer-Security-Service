@@ -1,0 +1,221 @@
+﻿import React, { useState, useEffect } from 'react';
+import { COMPANY, SERVICES } from '../data/siteData';
+import { Shield, Building, Factory, Home, Store, Tent, UserCog, User, Brush, ChevronDown } from 'lucide-react';
+
+const NAV_LINKS = [
+  { label: 'Home',       href: '#home' },
+  { label: 'About',      href: '#about' },
+  { label: 'Services',   href: '#services' },
+  { label: 'Industries', href: '#industries' },
+  { label: 'Gallery',    href: '#gallery' },
+  { label: 'Careers',    href: '#careers' },
+  { label: 'Contact',    href: '#contact' },
+];
+
+const LOGO_SRC = '/gallery/logo.png';
+
+const DROPDOWN_ICONS = {
+  'security-guards':      <Shield size={20} strokeWidth={2} color="#FFC107" />,
+  'corporate-security':   <Building size={20} strokeWidth={2} color="#FFC107" />,
+  'industrial-security':  <Factory size={20} strokeWidth={2} color="#FFC107" />,
+  'residential-security': <Home size={20} strokeWidth={2} color="#FFC107" />,
+  'commercial-security':  <Store size={20} strokeWidth={2} color="#FFC107" />,
+  'event-security':       <Tent size={20} strokeWidth={2} color="#FFC107" />,
+  'security-supervisors': <UserCog size={20} strokeWidth={2} color="#FFC107" />,
+  'female-guards':        <User size={20} strokeWidth={2} color="#FFC107" />,
+  'housekeeping':         <Brush size={20} strokeWidth={2} color="#FFC107" />,
+};
+
+const SERVICE_TAGLINES = {
+  'security-guards':      '24/7 armed & unarmed personnel for all premises.',
+  'corporate-security':   'Access control & visitor management for offices.',
+  'industrial-security':  'Protecting factories, warehouses & equipment.',
+  'residential-security': 'Gate management for societies & communities.',
+  'commercial-security':  'Retail, mall & showroom security experts.',
+  'event-security':       'Crowd control for events & conferences.',
+  'security-supervisors': 'On-site supervisors ensuring quality & discipline.',
+  'female-guards':        'Trained female guards for frisking & escort duty.',
+  'housekeeping':         'Professional cleaning & facility management staff.',
+};
+
+export default function Navbar() {
+  const [scrolled, setScrolled]         = useState(false);
+  const [menuOpen, setMenuOpen]         = useState(false);
+  const [activeSection, setActive]      = useState('#home');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth > 900) setMenuOpen(false); };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  // Close mega-menu when clicking outside
+  useEffect(() => {
+    const onClick = (e) => {
+      if (!e.target.closest('.nav-dropdown-container')) setDropdownOpen(false);
+    };
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, []);
+
+  const handleNavClick = (href) => {
+    setMenuOpen(false);
+    setDropdownOpen(false);
+    setActive(href);
+  };
+
+  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Force%2C+I+would+like+to+enquire+about+your+security+services.`;
+
+  return (
+    <>
+      <nav className={`navbar${scrolled ? ' scrolled' : ''}`} role="navigation" aria-label="Main navigation">
+        <div className="container navbar-inner">
+
+          {/* Logo */}
+          <a href="#home" className="navbar-logo" onClick={() => handleNavClick('#home')}>
+            <img
+              src={LOGO_SRC}
+              alt="Veer Security Service Logo"
+              className="navbar-logo-icon"
+              style={{ borderRadius: '50%', background: '#fff', padding: '2px', objectFit: 'contain' }}
+            />
+            <div className="navbar-logo-text">
+              <span className="navbar-logo-name">Veer Security Service</span>
+              <span className="navbar-logo-sub">Professional Security</span>
+            </div>
+          </a>
+
+          {/* Desktop nav */}
+          <ul className="navbar-nav" role="menubar">
+            {NAV_LINKS.map(l => {
+              if (l.label === 'Services') {
+                return (
+                  <li key={l.href} role="none" className="nav-dropdown-container">
+                    <a
+                      role="menuitem"
+                      href={l.href}
+                      className={`nav-link${activeSection === l.href ? ' active' : ''}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setDropdownOpen(prev => !prev);
+                      }}
+                    >
+                      {l.label}
+                      <span style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        marginLeft: '5px',
+                        transition: 'transform 0.25s ease',
+                        transform: dropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                      }}>
+                        <ChevronDown size={14} strokeWidth={2.5} />
+                      </span>
+                    </a>
+
+                    {/* â”€â”€ Mega Menu â”€â”€ */}
+                    <div className={`nav-mega-menu${dropdownOpen ? ' open' : ''}`}>
+                      <div className="nav-mega-header">
+                        <h4>Our Security &amp; Facility Services</h4>
+                        <p>Professional, trained &amp; reliable solutions tailored for every client</p>
+                      </div>
+                      <div className="nav-mega-grid">
+                        {SERVICES.map(svc => (
+                          <a
+                            key={svc.id}
+                            href={`#${svc.id}`}
+                            className="nav-mega-item"
+                            onClick={(e) => {
+                              // Let the default anchor click happen so the URL hash changes.
+                              // This will trigger the Services component to open the detail panel.
+                              setDropdownOpen(false);
+                              setActive('#services');
+                              
+                              // We want to scroll to the top of the services section (the banner)
+                              // instead of the card, so the banner and detail panel are visible.
+                              setTimeout(() => {
+                                document.getElementById('services')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                              }, 50);
+                            }}
+                          >
+                            <span className="nav-mega-icon">{DROPDOWN_ICONS[svc.id]}</span>
+                            <div className="nav-mega-text">
+                              <strong>{svc.title}</strong>
+                              <span>{SERVICE_TAGLINES[svc.id]}</span>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                      <div className="nav-mega-footer">
+                        <a
+                          href="#contact"
+                          onClick={() => { setDropdownOpen(false); setActive('#contact'); }}
+                        >
+                          ðŸ“ž Request a Free Quote &rarr;
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                );
+              }
+              return (
+                <li key={l.href} role="none">
+                  <a
+                    role="menuitem"
+                    href={l.href}
+                    className={`nav-link${activeSection === l.href ? ' active' : ''}`}
+                    onClick={() => handleNavClick(l.href)}
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Desktop actions */}
+          <div className="navbar-actions">
+            <a href={COMPANY.phoneHref} className="btn btn-outline btn-sm">ðŸ“ž Call Now</a>
+            <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp btn-sm">ðŸ’¬ WhatsApp</a>
+          </div>
+
+          {/* Hamburger */}
+          <button
+            className={`hamburger${menuOpen ? ' open' : ''}`}
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(o => !o)}
+          >
+            <span /><span /><span />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile menu */}
+      <div className={`mobile-nav${menuOpen ? ' open' : ''}`} role="menu" aria-label="Mobile navigation">
+        {NAV_LINKS.map(l => (
+          <a
+            key={l.href}
+            href={l.href}
+            className="nav-link"
+            role="menuitem"
+            onClick={() => handleNavClick(l.href)}
+          >
+            {l.label}
+          </a>
+        ))}
+        <div className="mobile-nav-actions">
+          <a href={COMPANY.phoneHref} className="btn btn-outline btn-sm">ðŸ“ž Call</a>
+          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp btn-sm">ðŸ’¬ WhatsApp</a>
+        </div>
+      </div>
+    </>
+  );
+}
+
