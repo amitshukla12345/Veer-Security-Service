@@ -81,12 +81,24 @@ export default function Navbar() {
     return () => document.removeEventListener('click', onClick);
   }, []);
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   const handleNavClick = () => {
     setMenuOpen(false);
     setDropdownOpen(false);
   };
 
-  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Force%2C+I+would+like+to+enquire+about+your+security+services.`;
+  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Service%2C+I+would+like+to+know+more+about+your+professional+security+services.`;
 
   return (
     <>
@@ -241,7 +253,6 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="mobile-nav-contact">
-          <p>Contact us 24/7:</p>
           <a href={COMPANY.phoneHref} className="btn btn-primary" style={{ width: '100%', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
             <Phone size={18} strokeWidth={2.5} /> {COMPANY.phone}
           </a>

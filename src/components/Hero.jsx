@@ -5,7 +5,7 @@ import { COMPANY } from '../data/siteData';
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=900&q=80&fit=crop';
 
 export default function Hero() {
-  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Force%2C+I+would+like+to+enquire+about+your+security+services.`;
+  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Service%2C+I+would+like+to+know+more+about+your+professional+security+services.`;
 
   const scrollTo = (id) => (e) => {
     e.preventDefault();

@@ -26,7 +26,7 @@ const LOGO_SRC = 'gallery/logo.png';
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Force%2C+I+would+like+to+enquire+about+your+security+services.`;
+  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Service%2C+I+would+like+to+know+more+about+your+professional+security+services.`;
 
   return (
     <footer className="footer" role="contentinfo">

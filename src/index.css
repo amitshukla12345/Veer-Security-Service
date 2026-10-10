@@ -1232,14 +1232,13 @@ h1,h2,h3,h4,h5 { line-height: 1.2; }
 .mobile-nav {
   display: none;
   position: fixed;
-  top: 72px; left: 0; right: 0;
+  top: 72px; left: 0; right: 0; bottom: 0;
   background: var(--navy-mid);
   border-bottom: 1px solid var(--border);
   z-index: 999;
   padding: 16px 24px 24px;
   flex-direction: column;
   gap: 4px;
-  max-height: calc(100vh - 72px);
   overflow-y: auto;
 }
 .mobile-nav.open { display: flex; }

@@ -2,7 +2,7 @@ import React from 'react';
 import { COMPANY } from '../data/siteData';
 
 export default function WhatsAppButton() {
-  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Force%2C+I+would+like+to+enquire+about+your+security+services.`;
+  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Service%2C+I+would+like+to+know+more+about+your+professional+security+services.`;
   return (
     <div className="floating-buttons">
       <a

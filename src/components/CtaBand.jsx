@@ -2,7 +2,7 @@ import React from 'react';
 import { COMPANY } from '../data/siteData';
 
 export default function CtaBand() {
-  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Force%2C+I+would+like+to+get+a+security+quotation.`;
+  const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Service%2C+I+would+like+to+get+a+security+quotation+for+my+premises.`;
   const scrollToQuote = (e) => {
     e.preventDefault();
     document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' });
