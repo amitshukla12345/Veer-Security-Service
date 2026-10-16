@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { COMPANY } from '../data/siteData';
 
 const HOUSEKEEPING_IMG = 'gallery/housekeeping/house%20keeping%20.jpg';
@@ -89,8 +90,18 @@ export default function HeroSlider() {
 
   const slide = SLIDES[current];
 
+  const navigate = useNavigate();
   const handleCtaClick = (href) => {
-    if (href) document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    if (!href) return;
+    const el = document.querySelector(href);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      if (href === '#quote') navigate('/contact#quote');
+      else if (href === '#contact') navigate('/contact');
+      else if (href === '#services') navigate('/services');
+      else navigate(href);
+    }
   };
 
   return (

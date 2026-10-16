@@ -1,12 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { COMPANY } from '../data/siteData';
 
 export default function CallButton() {
+  const navigate = useNavigate();
   const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Service%2C+I+would+like+to+know+more+about+your+professional+security+services.`;
 
   const scrollToQuote = (e) => {
     e.preventDefault();
-    document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById('quote');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/contact#quote');
+    }
   };
 
   return (

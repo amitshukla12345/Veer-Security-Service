@@ -9,8 +9,8 @@ export const COMPANY = {
     "Reliable and professional security solutions for businesses, residential communities, institutions, industries and events.",
 
   // ── Contact Details (replace placeholders with real values) ──
-  phone: "PHONE_NUMBER_HERE",            // e.g. "+91 98765 43210"
-  phoneHref: "tel:PHONE_NUMBER_HERE",    // e.g. "tel:+919876543210"
+  phone: "+91 84529 78461",
+  phoneHref: "tel:+918452978461",
 
   whatsapp: "+91 84529 78461",
   whatsappNumber: "918452978461",

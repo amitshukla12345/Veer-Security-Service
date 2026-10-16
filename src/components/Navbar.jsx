@@ -81,15 +81,32 @@ export default function Navbar() {
     return () => document.removeEventListener('click', onClick);
   }, []);
 
-  // Prevent background scrolling when mobile menu is open
+  // Prevent background scrolling and touchmove gestures when mobile menu is open
   useEffect(() => {
+    const handleTouchMove = (e) => {
+      e.preventDefault();
+    };
+
     if (menuOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.body.classList.add('nav-menu-open');
+      document.documentElement.classList.add('nav-menu-open');
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
     } else {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.classList.remove('nav-menu-open');
+      document.documentElement.classList.remove('nav-menu-open');
+      document.removeEventListener('touchmove', handleTouchMove);
     }
+
     return () => {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.classList.remove('nav-menu-open');
+      document.documentElement.classList.remove('nav-menu-open');
+      document.removeEventListener('touchmove', handleTouchMove);
     };
   }, [menuOpen]);
 
@@ -234,6 +251,13 @@ export default function Navbar() {
         </div>
       </nav>
 
+      {/* Mobile menu overlay */}
+      <div 
+        className={`mobile-nav-overlay${menuOpen ? ' open' : ''}`} 
+        onClick={() => setMenuOpen(false)}
+        aria-hidden="true"
+      ></div>
+
       {/* Mobile menu */}
       <div className={`mobile-nav${menuOpen ? ' open' : ''}`}>
         <ul className="mobile-nav-links">
@@ -241,7 +265,7 @@ export default function Navbar() {
             <li key={l.path}>
               <Link
                 to={l.path}
-                className={`nav-link${location.pathname === l.path ? ' active' : ''}`}
+                className="nav-link"
                 onClick={handleNavClick}
               >
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
@@ -253,12 +277,53 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="mobile-nav-contact">
-          <a href={COMPANY.phoneHref} className="btn btn-primary" style={{ width: '100%', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-            <Phone size={18} strokeWidth={2.5} /> {COMPANY.phone}
+          <a href={COMPANY.phoneHref} className="btn mobile-contact-btn mobile-call-btn">
+            <Phone size={17} strokeWidth={2.2} /> Contact Us
           </a>
-          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#25D366', color: '#fff', border: 'none' }}>
-            <MessageCircle size={18} strokeWidth={2.5} /> WhatsApp Us
+          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn mobile-contact-btn mobile-wa-btn">
+            <MessageCircle size={17} strokeWidth={2.2} /> WhatsApp Us
           </a>
+
+          {/* Follow Us Social Icons */}
+          <div className="mobile-social-section">
+            <div className="mobile-social-title">
+              <span className="mobile-social-bar"></span>
+              <span>FOLLOW US</span>
+            </div>
+            <div className="mobile-social-icons">
+              {COMPANY.social?.facebook && (
+                <a href={COMPANY.social.facebook} target="_blank" rel="noopener noreferrer" className="mobile-social-btn" aria-label="Facebook">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+              )}
+              {COMPANY.social?.instagram && (
+                <a href={COMPANY.social.instagram} target="_blank" rel="noopener noreferrer" className="mobile-social-btn" aria-label="Instagram">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+              )}
+              {COMPANY.social?.youtube && (
+                <a href={COMPANY.social.youtube} target="_blank" rel="noopener noreferrer" className="mobile-social-btn" aria-label="YouTube">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+              )}
+              {COMPANY.email && (
+                <a href={COMPANY.emailHref} className="mobile-social-btn" aria-label="Email Us">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </>
