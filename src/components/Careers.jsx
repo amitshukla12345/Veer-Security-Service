@@ -94,12 +94,15 @@ ${form.message || 'None'}
       {/* ── Hero Header with Img (No Cropping) ── */}
       <div style={{ position: 'relative', width: '100%', maxWidth: '1920px', margin: '0 auto', background: '#0a1e3c', overflow: 'hidden' }}>
         <img
-          src="gallery/career.png"
-          alt="Careers Banner"
+          src="gallery/guard%20recrutment.png"
+          alt="Guard Recruitment - Careers at Veer Security Service"
           fetchPriority="high"
           style={{ width: '100%', height: 'auto', display: 'block' }}
+          onError={(e) => {
+            e.currentTarget.src = "gallery/guard recrutment.png";
+          }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(2, 12, 27, 0.4)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(2, 12, 27, 0.3)' }} />
       </div>
 
       <div className="container" style={{ marginTop: '72px' }}>

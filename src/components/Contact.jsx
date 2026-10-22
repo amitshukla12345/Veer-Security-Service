@@ -63,13 +63,129 @@ export default function Contact() {
   const [hovered, setHovered] = useState(null);
   const [mapLocation, setMapLocation] = useState(null);
 
+  const scrollToQuote = (e) => {
+    e.preventDefault();
+    const el = document.getElementById('quote');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.hash = '#quote';
+    }
+  };
+
   return (
     <section id="contact" className="contact section-py" style={{ paddingTop: '72px', background: 'var(--navy)' }}>
 
-      {/* ── Hero Banner ── */}
-      <div style={{ position: 'relative', width: '100%', maxWidth: '1920px', margin: '0 auto', background: '#0a1e3c', overflow: 'hidden' }}>
-        <img src="gallery/contact.png" alt="Contact Banner" fetchPriority="high" style={{ width: '100%', height: 'auto', display: 'block' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(2,12,27,0.45)' }} />
+      {/* ── Hero Banner with Clickable Actions ── */}
+      <div style={{ position: 'relative', width: '100%', maxWidth: '1920px', margin: '0 auto', background: '#0a1e3c' }}>
+        <img 
+          src="gallery/contact.png" 
+          alt="Contact Veer Security Service - Connect With Us" 
+          fetchPriority="high" 
+          style={{ width: '100%', height: 'auto', display: 'block' }} 
+        />
+
+        {/* Clickable Hotspots mapped directly onto banner actions */}
+        <div 
+          className="contact-banner-hotspots" 
+          style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            pointerEvents: 'none' 
+          }}
+        >
+          {/* 1. Phone Call Hotspot */}
+          <a
+            href={COMPANY.phoneHref}
+            title={`Call Veer Security: ${COMPANY.phone}`}
+            aria-label={`Call Veer Security: ${COMPANY.phone}`}
+            className="banner-hotspot"
+            style={{
+              position: 'absolute',
+              left: '38.5%',
+              top: '71%',
+              width: '11.5%',
+              height: '26%',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              pointerEvents: 'auto',
+              display: 'block'
+            }}
+          />
+
+          {/* 2. Email Hotspot */}
+          <a
+            href={COMPANY.emailHref}
+            title={`Email Veer Security: ${COMPANY.email}`}
+            aria-label={`Email Veer Security: ${COMPANY.email}`}
+            className="banner-hotspot"
+            style={{
+              position: 'absolute',
+              left: '50.2%',
+              top: '71%',
+              width: '15.2%',
+              height: '26%',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              pointerEvents: 'auto',
+              display: 'block'
+            }}
+          />
+
+          {/* 3. Website Hotspot */}
+          <a
+            href="https://veersecurityservice.com"
+            title="Visit Veer Security Service Official Website"
+            aria-label="Visit Veer Security Service Official Website"
+            className="banner-hotspot"
+            style={{
+              position: 'absolute',
+              left: '65.8%',
+              top: '71%',
+              width: '13%',
+              height: '26%',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              pointerEvents: 'auto',
+              display: 'block'
+            }}
+          />
+
+          {/* 4. Request A Consultation Button Hotspot */}
+          <a
+            href="#quote"
+            onClick={scrollToQuote}
+            title="Request a Free Security Consultation"
+            aria-label="Request a Free Security Consultation"
+            className="banner-hotspot-btn"
+            style={{
+              position: 'absolute',
+              left: '79.2%',
+              top: '76.5%',
+              width: '18.8%',
+              height: '17%',
+              borderRadius: '9999px',
+              cursor: 'pointer',
+              pointerEvents: 'auto',
+              display: 'block'
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Mobile-friendly Quick Action Bar (shown on smaller screens) */}
+      <div className="contact-banner-mobile-bar">
+        <a href={COMPANY.phoneHref} className="cb-mob-item">
+          <Phone size={15} />
+          <span>+91 84529 78461</span>
+        </a>
+        <a href={COMPANY.emailHref} className="cb-mob-item">
+          <Mail size={15} />
+          <span>Email Us</span>
+        </a>
+        <a href="#quote" onClick={scrollToQuote} className="cb-mob-item cb-mob-cta">
+          <span>Request Consultation</span>
+        </a>
       </div>
 
       {/* ── Contact Info Cards ── */}

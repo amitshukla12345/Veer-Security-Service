@@ -57,6 +57,7 @@ export default function Navbar() {
   const [scrolled, setScrolled]         = useState(false);
   const [menuOpen, setMenuOpen]         = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   
   const location = useLocation();
 
@@ -81,10 +82,19 @@ export default function Navbar() {
     return () => document.removeEventListener('click', onClick);
   }, []);
 
+  // Reset mobile services dropdown when menu closes
+  useEffect(() => {
+    if (!menuOpen) {
+      setMobileServicesOpen(false);
+    }
+  }, [menuOpen]);
+
   // Prevent background scrolling and touchmove gestures when mobile menu is open
   useEffect(() => {
     const handleTouchMove = (e) => {
-      e.preventDefault();
+      if (!e.target.closest('.mobile-nav')) {
+        e.preventDefault();
+      }
     };
 
     if (menuOpen) {
@@ -113,6 +123,7 @@ export default function Navbar() {
   const handleNavClick = () => {
     setMenuOpen(false);
     setDropdownOpen(false);
+    setMobileServicesOpen(false);
   };
 
   const waLink = `https://wa.me/${COMPANY.whatsappNumber}?text=Hello+Veer+Security+Service%2C+I+would+like+to+know+more+about+your+professional+security+services.`;
@@ -261,20 +272,95 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div className={`mobile-nav${menuOpen ? ' open' : ''}`}>
         <ul className="mobile-nav-links">
-          {NAV_LINKS.map(l => (
-            <li key={l.path}>
-              <Link
-                to={l.path}
-                className="nav-link"
-                onClick={handleNavClick}
-              >
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                  <NavIcon name={l.iconName} />
-                  {l.label}
-                </span>
-              </Link>
-            </li>
-          ))}
+          {NAV_LINKS.map(l => {
+            if (l.label === 'Services') {
+              return (
+                <li key={l.path} className="mobile-nav-item-dropdown">
+                  <div
+                    className={`nav-link mobile-nav-dropdown-btn${mobileServicesOpen ? ' open' : ''}`}
+                    onClick={() => setMobileServicesOpen(prev => !prev)}
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={mobileServicesOpen}
+                    aria-label="Toggle Services dropdown"
+                  >
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                      <NavIcon name={l.iconName} />
+                      {l.label}
+                    </span>
+                    <span
+                      className="mobile-nav-arrow"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                        color: mobileServicesOpen ? 'var(--yellow, #FFC107)' : 'rgba(255, 255, 255, 0.7)',
+                      }}
+                    >
+                      <ChevronDown size={18} strokeWidth={2.4} />
+                    </span>
+                  </div>
+
+                  {/* Mobile Services Accordion Submenu */}
+                  {mobileServicesOpen && (
+                    <div className="mobile-services-accordion">
+                      <div className="mobile-services-grid">
+                        {SERVICES.map(svc => (
+                          <Link
+                            key={svc.id}
+                            to={`/services#${svc.id}`}
+                            className="mobile-service-sublink"
+                            onClick={() => {
+                              setMenuOpen(false);
+                              setMobileServicesOpen(false);
+                              if (location.pathname === '/services') {
+                                window.location.hash = svc.id;
+                              }
+                            }}
+                          >
+                            <span className="mobile-service-subicon">
+                              {DROPDOWN_ICONS[svc.id] || <Shield size={18} color="#FFC107" />}
+                            </span>
+                            <div className="mobile-service-subtext">
+                              <span className="mobile-service-subtitle">{svc.title}</span>
+                              <span className="mobile-service-subdesc">{SERVICE_TAGLINES[svc.id]}</span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                      <Link
+                        to="/services"
+                        className="mobile-services-all-link"
+                        onClick={() => {
+                          setMenuOpen(false);
+                          setMobileServicesOpen(false);
+                        }}
+                      >
+                        <span>View All Services Page</span>
+                        <span>&rarr;</span>
+                      </Link>
+                    </div>
+                  )}
+                </li>
+              );
+            }
+
+            return (
+              <li key={l.path}>
+                <Link
+                  to={l.path}
+                  className="nav-link"
+                  onClick={handleNavClick}
+                >
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                    <NavIcon name={l.iconName} />
+                    {l.label}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         <div className="mobile-nav-contact">
           <a href={COMPANY.phoneHref} className="btn mobile-contact-btn mobile-call-btn">
