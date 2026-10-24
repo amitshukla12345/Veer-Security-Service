@@ -1724,20 +1724,34 @@ body.nav-menu-open .floating-buttons {
 }
 
 
-/* --- Trusted Clients Badge --- */
-.hs-trusted-badge {
-  position: absolute;
-  bottom: 15%;
-  left: -10%; /* overhangs the curve */
-  background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+/* --- Below Banner Trusted Clients Strip --- */
+.hs-below-banner-strip {
+  width: 100%;
+  background: #020c1b;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 193, 7, 0.25);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 10;
+}
+
+.hs-trusted-badge-below {
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
   border: 3px solid var(--yellow);
   border-radius: 100px;
-  padding: 10px 24px 10px 10px;
-  display: flex;
+  padding: 10px 28px 10px 14px;
+  display: inline-flex;
   align-items: center;
   gap: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  z-index: 5;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+  transition: transform 0.3s ease;
+}
+.hs-trusted-badge-below:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 193, 7, 0.3);
 }
 
 .hs-badge-avatars {
@@ -1756,8 +1770,9 @@ body.nav-menu-open .floating-buttons {
 
 .hs-badge-text {
   color: var(--white);
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
   line-height: 1.2;
 }
 
@@ -1796,55 +1811,75 @@ body.nav-menu-open .floating-buttons {
   .hero-slider {
     min-height: auto;
     padding-top: 72px; /* Navbar height */
-    padding-bottom: 4rem; /* Make room for nav dots */
+    padding-bottom: 3.5rem; /* Make room for nav dots */
   }
   .hs-content-wrap {
     position: relative;
     padding: 0;
+    width: 100%;
   }
   .hs-layout {
     grid-template-columns: 1fr;
     text-align: center;
-    padding-top: 0;
-    padding-left: 0; /* Reset desktop padding */
+    padding: 0 !important; /* Remove any padding so image touches edges */
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
     gap: 0;
   }
   .hs-image-col {
     position: relative;
-    width: 100%;
+    width: 100vw; /* Full viewport width to eliminate left space */
+    margin-left: calc(-50vw + 50%); /* Break out of any parent container padding */
     height: auto;
-    aspect-ratio: 4 / 3; /* Proportional scaling prevents extreme horizontal cropping */
+    aspect-ratio: 16 / 10; /* Better proportion so guards & gate are fully visible without cropping */
     top: auto;
     left: auto;
-    order: -1; /* Image first */
+    right: auto;
+    order: -1; /* Image first on mobile */
   }
-  /* On mobile, flip the curve to the bottom instead of the left */
+  /* On mobile, cleanly curve only the bottom edge */
   .hs-image-col::after, .hs-image-col::before, .hs-curve-mask {
     border-radius: 0;
-    border-bottom-left-radius: 50% 20px;
-    border-bottom-right-radius: 50% 20px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
     inset: 0;
   }
-  .hs-image-col::before { bottom: -8px; top: 0; left: 0; right: 0; background: var(--yellow); }
-  .hs-image-col::after { bottom: -16px; top: 0; left: 0; right: 0; background: var(--navy-light); }
+  .hs-image-col::before { bottom: -6px; top: 0; left: 0; right: 0; background: var(--yellow); }
+  .hs-image-col::after { bottom: -12px; top: 0; left: 0; right: 0; background: var(--navy-light); }
   
-  .hs-image { object-position: center; } /* Re-center to ensure text inside image is visible */
+  .hs-image { 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%; 
+    display: block;
+  }
   
   .hs-text-col { 
-    margin: 40px auto 20px; /* Space above text */
-    padding-bottom: 2rem; 
-    padding-left: 20px;
-    padding-right: 20px;
+    margin: 30px auto 16px; 
+    padding: 0 20px 1.5rem; 
     width: 100%;
+    max-width: 540px;
     box-sizing: border-box;
   }
-  .hs-main-heading { font-size: clamp(1.8rem, 8vw, 2.4rem); word-break: break-word; } /* Ensure heading fits */
+  .hs-main-heading { font-size: clamp(1.75rem, 7.5vw, 2.3rem); word-break: break-word; }
   
-  .hs-trusted-badge {
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%) scale(0.9);
-    width: max-content;
+  .hs-trusted-badge-below {
+    padding: 8px 16px 8px 10px;
+    gap: 10px;
+    max-width: 95%;
+  }
+  .hs-trusted-badge-below .hs-badge-text {
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .hs-trusted-badge-below .hs-avatar {
+    width: 32px;
+    height: 32px;
+  }
+  .hs-below-banner-strip {
+    padding: 12px 14px;
   }
 }
 

@@ -105,63 +105,69 @@ export default function HeroSlider() {
   };
 
   return (
-    <section id="home" className="hero-slider">
-      {/* Dynamic Background matching reference image */}
-      <div className="hs-bg" />
+    <div id="home" className="hero-slider-container">
+      <div className="hero-slider">
+        {/* Dynamic Background matching reference image */}
+        <div className="hs-bg" />
 
-      {/* Slide Content wrapper */}
-      <div className={`hs-content-wrap${animating ? ' hs-animating' : ''}`}>
-        
-        <div className="container hs-layout">
+        {/* Slide Content wrapper */}
+        <div className={`hs-content-wrap${animating ? ' hs-animating' : ''}`}>
           
-          {/* Left Text Column */}
-          <div className="hs-text-col">
-            <h1 className="hs-main-heading">
-              <span className="hs-highlight">{slide.highlight}</span> <br/>
-              <span className="hs-white-title">{slide.title}</span>
-            </h1>
-            <p className="hs-description">
-              {slide.desc}
-            </p>
-            <button className="hs-btn-primary" onClick={() => handleCtaClick(slide.cta.href)}>
-              {slide.cta.label}
-            </button>
-          </div>
-
-          {/* Right Image/Curve Column */}
-          <div className="hs-image-col">
-            {/* The SVG curve mask for the image */}
-            <div className="hs-curve-mask">
-              <img src={slide.img} alt={slide.title} className="hs-image" />
-              {/* Yellow border overlay (SVG or CSS) */}
-              <div className="hs-curve-border"></div>
+          <div className="container hs-layout">
+            
+            {/* Left Text Column */}
+            <div className="hs-text-col">
+              <h1 className="hs-main-heading">
+                <span className="hs-highlight">{slide.highlight}</span> <br/>
+                <span className="hs-white-title">{slide.title}</span>
+              </h1>
+              <p className="hs-description">
+                {slide.desc}
+              </p>
+              <button className="hs-btn-primary" onClick={() => handleCtaClick(slide.cta.href)}>
+                {slide.cta.label}
+              </button>
             </div>
 
-            {/* Trusted Clients Badge overlapping the curve */}
-            <div className="hs-trusted-badge">
-              <div className="hs-badge-avatars">
-                <div className="hs-avatar" style={{backgroundImage: 'url(https://i.pravatar.cc/100?img=11)'}}></div>
-                <div className="hs-avatar" style={{backgroundImage: 'url(https://i.pravatar.cc/100?img=33)'}}></div>
-                <div className="hs-avatar" style={{backgroundImage: 'url(https://i.pravatar.cc/100?img=47)'}}></div>
+            {/* Right Image/Curve Column */}
+            <div className="hs-image-col">
+              {/* The SVG curve mask for the image */}
+              <div className="hs-curve-mask">
+                <img src={slide.img} alt={slide.title} className="hs-image" />
+                {/* Yellow border overlay (SVG or CSS) */}
+                <div className="hs-curve-border"></div>
               </div>
-              <span className="hs-badge-text">{slide.badgeText}</span>
             </div>
+            
           </div>
-          
+        </div>
+
+        {/* Nav dots */}
+        <div className="hs-nav-dots">
+          {SLIDES.map((_, i) => (
+            <button
+              key={i}
+              className={`hs-nav-dot${i === current ? ' active' : ''}`}
+              onClick={() => goTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
         </div>
       </div>
 
-      {/* Nav dots */}
-      <div className="hs-nav-dots">
-        {SLIDES.map((_, i) => (
-          <button
-            key={i}
-            className={`hs-nav-dot${i === current ? ' active' : ''}`}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
+      {/* ── 500+ Trusted Clients Strip (Cleanly displayed below the banner) ── */}
+      <div className="hs-below-banner-strip">
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div className="hs-trusted-badge-below">
+            <div className="hs-badge-avatars">
+              <div className="hs-avatar" style={{backgroundImage: 'url(https://i.pravatar.cc/100?img=11)'}}></div>
+              <div className="hs-avatar" style={{backgroundImage: 'url(https://i.pravatar.cc/100?img=33)'}}></div>
+              <div className="hs-avatar" style={{backgroundImage: 'url(https://i.pravatar.cc/100?img=47)'}}></div>
+            </div>
+            <span className="hs-badge-text">500+ Trusted Clients Across Mumbai & Maharashtra</span>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
