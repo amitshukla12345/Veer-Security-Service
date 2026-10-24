@@ -82,6 +82,12 @@ export default function HeroSlider() {
   const next = () => goTo((current + 1) % total);
 
   useEffect(() => {
+    // Preload all slide images into browser cache so transitions are instant
+    SLIDES.forEach(s => {
+      const img = new Image();
+      img.src = s.img;
+    });
+
     const timer = setInterval(() => {
       goTo((current + 1) % total);
     }, 5500);
@@ -133,9 +139,13 @@ export default function HeroSlider() {
             <div className="hs-image-col">
               {/* The SVG curve mask for the image */}
               <div className="hs-curve-mask">
-                <img src={slide.img} alt={slide.title} className="hs-image" />
-                {/* Yellow border overlay (SVG or CSS) */}
-                <div className="hs-curve-border"></div>
+                <img 
+                  src={slide.img} 
+                  alt={slide.title} 
+                  className="hs-image" 
+                  fetchPriority="high" 
+                  loading="eager" 
+                />
               </div>
             </div>
             

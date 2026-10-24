@@ -1684,14 +1684,16 @@ body.nav-menu-open .floating-buttons {
   z-index: 1;
 }
 
-/* The Mask (Curve) */
+/* The Mask (Curve) with dark navy placeholder (never yellow) */
 .hs-curve-mask {
   position: absolute;
   inset: 0;
   border-top-left-radius: 40% 100%;
   border-bottom-left-radius: 40% 100%;
   overflow: hidden;
-  box-shadow: -4px 0 12px rgba(0,0,0,0.3);
+  background: #041434; /* Dark navy - zero yellow flash */
+  border-left: 6px solid var(--yellow); /* Yellow edge border only */
+  box-shadow: -6px 0 20px rgba(0,0,0,0.5);
 }
 
 .hs-image {
@@ -1699,28 +1701,20 @@ body.nav-menu-open .floating-buttons {
   height: 100%;
   object-fit: cover;
   object-position: center 10%; /* Keep the top banner visible */
+  background: #041434;
+  display: block;
 }
 
-/* The yellow outline arc (Simulated via pseudo element) */
-.hs-image-col::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 0 -8px; /* Perfectly uniform 8px thickness */
-  background: var(--yellow);
-  border-top-left-radius: 40% 100%;
-  border-bottom-left-radius: 40% 100%;
-  z-index: -1;
-}
-
-/* Dark blue overlay arc behind yellow */
+/* Outer accent arc (border only, no yellow background fill) */
 .hs-image-col::after {
   content: '';
   position: absolute;
-  inset: 0 0 0 -18px; /* 10px thickness behind the yellow */
-  background: var(--navy-light);
+  inset: 0 0 0 -12px;
+  border-left: 3px solid var(--navy-light);
   border-top-left-radius: 40% 100%;
   border-bottom-left-radius: 40% 100%;
-  z-index: -2;
+  z-index: -1;
+  pointer-events: none;
 }
 
 
@@ -1838,15 +1832,19 @@ body.nav-menu-open .floating-buttons {
     right: auto;
     order: -1; /* Image first on mobile */
   }
-  /* On mobile, cleanly curve only the bottom edge */
-  .hs-image-col::after, .hs-image-col::before, .hs-curve-mask {
+  /* On mobile, clean bottom accent without any yellow background fill */
+  .hs-curve-mask {
     border-radius: 0;
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 24px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-left: none;
+    border-bottom: 4px solid var(--yellow);
+    background: #041434;
     inset: 0;
   }
-  .hs-image-col::before { bottom: -6px; top: 0; left: 0; right: 0; background: var(--yellow); }
-  .hs-image-col::after { bottom: -12px; top: 0; left: 0; right: 0; background: var(--navy-light); }
+  .hs-image-col::after, .hs-image-col::before {
+    display: none;
+  }
   
   .hs-image { 
     width: 100%;
