@@ -134,9 +134,15 @@ export default function Contact() {
 
           {/* 3. Website Hotspot */}
           <a
-            href="https://veersecurityservice.com"
-            title="Visit Veer Security Service Official Website"
-            aria-label="Visit Veer Security Service Official Website"
+            href="https://www.veersecurityservice.in"
+            onClick={(e) => {
+              if (window.location.hostname.includes('veersecurityservice.in') || window.location.hostname === 'localhost') {
+                e.preventDefault();
+                window.location.href = '/';
+              }
+            }}
+            title="Visit Veer Security Service: www.veersecurityservice.in"
+            aria-label="Visit Veer Security Service: www.veersecurityservice.in"
             className="banner-hotspot"
             style={{
               position: 'absolute',

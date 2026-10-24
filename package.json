@@ -2,7 +2,7 @@
   "name": "veer-security-force",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://amitshukla12345.github.io/Veer-Security-Service",
+  "homepage": "https://veersecurityservice.in",
   "type": "module",
   "scripts": {
     "dev": "vite",
